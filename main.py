@@ -1,20 +1,18 @@
-import math
 import pandas as pd
-import random
-import numpy as np
-# This is a sample Python script.
+import argparse
+from algorithm.kmeans import Kmeans
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--k_clusters", type=int, default=2,
+                        help="The number of clusters used in the execution. The default is 2.")
+    args = parser.parse_args()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Data set apenas para testar o algoritmo. Phobias_Vars.txt
+    test_data = pd.DataFrame({
+        '1': [1, 1, 1, 1, 1, 5, 3, 1, 3, 2],
+        '2': [2, 1,	1, 3, 5, 5, 5, 4, 5, 5]
+    })
+
+    kmeans = Kmeans(args.k_clusters, test_data)
+
