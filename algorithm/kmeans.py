@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
-random.seed(27)
+random.seed(666)
 
 # TODO: Inicializar as centróides N vezes, 
 # selecionando instancias aleatórias, 
@@ -20,6 +20,9 @@ class Kmeans(object):
 
         self.intracluster_distance = []
         self.total_intracluster_distance = 0
+
+        self.centroids = []
+        self.centroids_instances_set = []
 
         for attempt in range(1, max_attempts+1):
             self.current_attempt = attempt
@@ -58,6 +61,8 @@ class Kmeans(object):
 
             if self.check_convergence(centroids, new_centroids):
                 # print("Total iterations: ", iterations)
+                self.centroids = new_centroids
+                self.centroids_instances_set = centroids_instances_set
                 self.get_wss(new_centroids, centroids_instances_set)
                 break
             else:
@@ -104,7 +109,10 @@ class Kmeans(object):
 
     def check_convergence(self, old_centroids, new_centroids):
         # Compara a lista de centróides antes e depois da iteração para verificar se há atribuições de novas instâncias entre os clusters
-        return ((old_centroids == new_centroids).all())
+        try:
+            return ((old_centroids == new_centroids).all())
+        except:
+            return False
 
     def get_wss(self, centroids, centroids_instances_set):
         intracluster_distance = np.zeros(self.k_clusters)
@@ -126,5 +134,21 @@ class Kmeans(object):
             self.intracluster_distance = intracluster_distance
             self.total_intracluster_distance = total_intracluster_distance
 
+    def get_cluster_color(self):
+        colors = []
+
+        for i in self.centroids_instances_set.cluster.values:
+            colors.append(self.get_instance_color(i))
+        return colors
+
+    def get_instance_color(self, cluster):
+        if cluster == 1:
+            return 'red'
+        elif cluster == 2:
+            return 'green'
+        elif cluster == 3:
+            return 'yellow'
+        else:
+            return 'blue'
 
             

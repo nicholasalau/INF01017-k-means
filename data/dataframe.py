@@ -2,7 +2,8 @@ import math
 import pandas as pd
 import random
 import numpy as np
-random.seed(9)
+random.seed(666)
+
 
 class DataFrame(object):
     _data_frame = None
@@ -23,6 +24,11 @@ class DataFrame(object):
 
     def get_random_instances(self, n):
         return random.sample(range(0, len(self.get_values())), n)
+
+    def get_column(self, column):
+        return self._data_frame[column]
+
+    
 
 
 
