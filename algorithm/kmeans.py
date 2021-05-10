@@ -38,12 +38,15 @@ class Kmeans(object):
 
         # Utilizando k instância(s) aleatoria(s) do dataset como centroide(s).
         centroids_pos = self.dataset.get_random_instances(k)
+
+        
         # print("Random centroids indexes: ", centroids_pos)
 
         # Atribuindo os valores de cada centroide de acordo com o index obtido anteriormente.
         for pos in centroids_pos:
             centroids.append(self.values[pos])
         centroids = np.array(centroids)
+
         # print("Centroids: ", centroids)
 
         # 2. Enquanto houverem alterações nas associações de instâncias aos k clusters, faça:
@@ -86,6 +89,7 @@ class Kmeans(object):
             # print("New set instance: ", c)
             current_cluster = new_set[new_set['cluster'] == c][new_set.columns[:-1]]
             # print("Current cluster: ", current_cluster)
+
             cluster_mean = current_cluster.mean(axis=0)
             new_centroids.append(cluster_mean)
         return np.array(new_centroids)
@@ -105,6 +109,7 @@ class Kmeans(object):
         # ii. Associe a instância xi ao cluster j (cujo centróide é o mais próximo).
         new_set = pd.concat([pd.DataFrame(self.values, columns=self.dataset.get_attributes()), pd.DataFrame(closest_centroids, columns=['cluster'])], axis=1)
         # print("New set: ", new_set)
+
         return new_set
 
     def check_convergence(self, old_centroids, new_centroids):

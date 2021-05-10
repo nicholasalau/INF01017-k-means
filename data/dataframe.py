@@ -28,6 +28,35 @@ class DataFrame(object):
     def get_column(self, column):
         return self._data_frame[column]
 
+    def pre_process(self, column, categoric, values_mapping=None):
+        df = self._data_frame.copy()
+
+        most_occured_value = df[column].value_counts()[:1].index.tolist()[0] # used in case of NaN
+        column_values = df[column].copy()
+
+        # Treatment of NaN
+        for index, value in enumerate(df[column]):
+            try:
+                if math.isnan(value):
+                    column_values[index+1] = most_occured_value
+            except:
+                pass
+
+            
+
+
+        # Save the new dataframe (without NaN)
+        df[column] = column_values
+
+        if categoric == True:
+            # Map the categoric values
+            df[column] = df[column].map(values_mapping)
+            
+            df[column] = pd.DataFrame(df[column].values, columns=[column]).values
+            self._data_frame = df
+        else:
+            print("sxee")
+
     
 
 
