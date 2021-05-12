@@ -23,7 +23,7 @@ Run the K-means algorithm.
 positional arguments:
   h              The hypothesis to be used. The default is 1.
   k_clusters     The number of clusters used in algorithm. The default is 2.
-  centroids_iterations     Number of iterations to find the best centroids initialization. The efault is 50.
+  centroids_iterations     Number of iterations to find the best centroids initialization. The default is 50.
   elbow_plot     If the execution should plot the Elbow method showing the optimal K. The default is False.
   
 optional arguments:
