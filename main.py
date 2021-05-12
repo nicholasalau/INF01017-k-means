@@ -4,8 +4,6 @@ import numpy as np
 from algorithm.kmeans import Kmeans
 from data.dataframe import DataFrame
 import matplotlib.pyplot as plt
-
-# Se der pra usar
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
@@ -38,7 +36,7 @@ if __name__ == '__main__':
     parser.add_argument("--k_clusters", type=int, default=2,
                         help="Number of clusters. Default is 2.")
     parser.add_argument("--centroids_iterations", type=int, default=50,
-                        help="Number of iteratrions to find the best centroids initialization. Default is 50.")
+                        help="Number of iterations to find the best centroids initialization. Default is 50.")
     args = parser.parse_args()
 
     if args.h in hypothesis:

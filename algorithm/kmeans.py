@@ -3,11 +3,6 @@ import numpy as np
 import random
 random.seed(123)
 
-# TODO: Inicializar as centróides N vezes, 
-# selecionando instancias aleatórias, 
-# executar o algoritmo k-means e calcular a dissimilaridade intracluster V e verificar qual configuração gerou uma distâncias intracluster mínima, 
-# e daí se usa esse configuração 
-
 class Kmeans(object):
     def __init__(self, k_clusters, dataset, max_attempts):
         print("Running algorithm... for", k_clusters, "clusters")
@@ -29,8 +24,6 @@ class Kmeans(object):
             self.initialize(k_clusters)
 
     def initialize(self, k):
-        # print("Max iterations: ", max_iter)
-        # print("Dataset: ", self.values)
         print("Initializing the random centroids of the", k, "clusters. Attempt", self.current_attempt ,"of", self.max_attempts)
 
         # 1. Posicionar os k centróides c1,c2, ... ck, em pontos aleatórios no espaço dos dados originais (observando intervalo de valores para cada atributo descritivo das instâncias)
@@ -39,15 +32,10 @@ class Kmeans(object):
         # Utilizando k instância(s) aleatoria(s) do dataset como centroide(s).
         centroids_pos = self.dataset.get_random_instances(k)
 
-        
-        # print("Random centroids indexes: ", centroids_pos)
-
         # Atribuindo os valores de cada centroide de acordo com o index obtido anteriormente.
         for pos in centroids_pos:
             centroids.append(self.values[pos])
         centroids = np.array(centroids)
-
-        # print("Centroids: ", centroids)
 
         # 2. Enquanto houverem alterações nas associações de instâncias aos k clusters, faça:
         # a. Para cada instância xi:
@@ -71,8 +59,6 @@ class Kmeans(object):
             else:
                 centroids = new_centroids
                 iterations += 1
-            # print("Centroids: ", centroids)
-            # TODO: Add convergence point.
 
     def euclidian_distances(self, centroids, instance):
         # Distancia para cada centroide.
