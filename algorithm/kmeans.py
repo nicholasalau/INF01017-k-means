@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
-random.seed(666)
+random.seed(123)
 
 # TODO: Inicializar as centróides N vezes, 
 # selecionando instancias aleatórias, 
@@ -153,6 +153,8 @@ class Kmeans(object):
             return 'green'
         elif cluster == 3:
             return 'yellow'
+        elif cluster == 4:
+            return 'orange'
         else:
             return 'blue'
 

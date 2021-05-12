@@ -2,7 +2,7 @@ import math
 import pandas as pd
 import random
 import numpy as np
-random.seed(666)
+random.seed(123)
 
 
 class DataFrame(object):
@@ -41,9 +41,6 @@ class DataFrame(object):
                     column_values[index+1] = most_occured_value
             except:
                 pass
-
-            
-
 
         # Save the new dataframe (without NaN)
         df[column] = column_values
